@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -22,6 +23,18 @@ namespace Students_IS_Enriquez.Views
         public Login_Signup_Window()
         {
             InitializeComponent();
+        }
+
+        private void signUp_Click_1(object sender, RoutedEventArgs e)
+        {
+           logIn.Visibility = Visibility.Collapsed;
+            SignUp.Visibility = Visibility.Visible;
+        }
+
+        private void SignUp_Click(object sender, RoutedEventArgs e)
+        {
+            logIn.Visibility = Visibility.Visible;
+            SignUp.Visibility = Visibility.Collapsed;
         }
     }
 }

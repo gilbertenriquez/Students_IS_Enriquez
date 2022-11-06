@@ -15,7 +15,8 @@
                 <ColumnDefinition Width="417*"/>
             </Grid.ColumnDefinitions>
             <!--login-->
-            <StackPanel Orientation="Vertical" 
+        <StackPanel x:Name="logIn" Visibility="Visible">
+            <StackPanel x:Name="panel1" Orientation="Vertical" 
                     VerticalAlignment="Center">
                 <Label Content="Sign In" 
                    FontFamily="Segeo UI Light"
@@ -34,7 +35,7 @@
                        FontSize="14"
                        materialDesign:HintAssist.IsFloating="True"/>
 
-            <Button Content="Sign in" HorizontalAlignment="Right"
+            <Button Content="Sign in" HorizontalAlignment="Right" Foreground="{StaticResource ButtonColor}"
                         Height="40" Width="120" materialDesign:ButtonAssist.CornerRadius="5"/>
             <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" Margin="10">
 
@@ -42,15 +43,50 @@
                    Foreground="{StaticResource TextColor}" HorizontalAlignment="Left"/>
                 <Button Content=" Sign Up" Height="30" Width="100" HorizontalAlignment="Right"
                         Background="Transparent"
-                        BorderThickness="4"/>
+                        BorderThickness="4"
+                        x:Name="signUp"
+                        Click="signUp_Click_1"
+                        Foreground="{StaticResource ButtonColor}"/>
 
             </StackPanel>
-        </StackPanel >
+        </StackPanel>
         
 
+        
             <!--Signup-->
-            <StackPanel>
 
-            </StackPanel>
-        </Grid>
+        
+        </StackPanel>
+        <StackPanel x:Name="SignUp" Visibility="Hidden">
+            <TextBox materialDesign:HintAssist.Hint="Fullname" 
+                       Margin="25,0" 
+                       Foreground="{StaticResource TextColor}"
+                       FontSize="14"
+                       materialDesign:HintAssist.IsFloating="True"/>
+            
+            <TextBox materialDesign:HintAssist.Hint="Contact Number" 
+                       Margin="25,0" 
+                       Foreground="{StaticResource TextColor}"
+                       FontSize="14"
+                       materialDesign:HintAssist.IsFloating="True"/>
+            
+            <TextBox materialDesign:HintAssist.Hint="Email" 
+                       Margin="25,0" 
+                       Foreground="{StaticResource TextColor}"
+                       FontSize="14"
+                       materialDesign:HintAssist.IsFloating="True"/>
+            
+            <PasswordBox materialDesign:HintAssist.Hint="Password"
+                       Margin="25,10" 
+                       Foreground="{StaticResource TextColor}"
+                       FontSize="14"
+                       materialDesign:HintAssist.IsFloating="True"/>
+           
+            
+            <Button x:Name="ssignUp" Click="SignUp_Click" Content="LogIn"/>
+        </StackPanel>
+    </Grid>
+ 
+    
+    
 </Window>
