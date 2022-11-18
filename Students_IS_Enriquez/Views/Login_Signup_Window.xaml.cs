@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Students_IS_Enriquez.Models;
+using Students_IS_Enriquez.Includes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,16 +27,32 @@ namespace Students_IS_Enriquez.Views
             InitializeComponent();
         }
 
-        private void signUp_Click_1(object sender, RoutedEventArgs e)
+
+        private void BtnSignup_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-           logIn.Visibility = Visibility.Collapsed;
-            SignUp.Visibility = Visibility.Visible;
+            cardLogin.Visibility = Visibility.Visible;
+            CardSignup.Visibility = Visibility.Collapsed;
         }
 
-        private void SignUp_Click(object sender, RoutedEventArgs e)
+        private void Btnsignin_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            logIn.Visibility = Visibility.Visible;
-            SignUp.Visibility = Visibility.Collapsed;
+            cardLogin.Visibility = Visibility.Collapsed;
+            CardSignup.Visibility = Visibility.Visible;
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var a = await SQLconfig.Conopen();
+            if (a)
+            {
+                MessageBox.Show("Connection open");
+            }
+            else
+            {
+                MessageBox.Show("Connection Error");
+            }
+
         }
     }
 }
+
