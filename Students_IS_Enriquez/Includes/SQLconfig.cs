@@ -21,7 +21,7 @@ namespace Students_IS_Enriquez.Includes
             {
                 string? Cstring;
                 Cstring =
-                    $"Data Source = 192.168.102.113;Initial Catalog=Student_IS_db;Integrated Security=False;User ID=sa;Password=administrator01;";
+                    $"Data Source = 192.168.0.101;Initial Catalog=Student_IS_db_Enriquez;Integrated Security=False;User ID=sa;Password=administrator01;";
                 Cnn = new SqlConnection(Cstring);
                 await Cnn.OpenAsync();
                 return true;

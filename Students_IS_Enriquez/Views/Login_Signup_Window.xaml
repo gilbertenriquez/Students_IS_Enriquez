@@ -10,10 +10,47 @@
         mc:Ignorable="d"
         Background="{StaticResource Background}"
         Title="Login_Signup_Window" Height="450" Width="800">
-    
-    
-    
-    
+    <Window.Resources>
+        <Storyboard x:Key="LoginBoard">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="cardLogin" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="20,119,20,-119">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <BounceEase EasingMode="EaseIn"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="20,20,20,20">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseOut"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="SignBoard">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="CardSignup" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="-202,20,270,20">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <ElasticEase EasingMode="EaseInOut"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="20,20,20,20">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <ElasticEase EasingMode="EaseInOut"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="UIElement.PreviewMouseLeftButtonDown" SourceName="BtnSignup">
+            <BeginStoryboard Storyboard="{StaticResource LoginBoard}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.PreviewMouseLeftButtonDown" SourceName="Btnsignin">
+            <BeginStoryboard Storyboard="{StaticResource SignBoard}"/>
+        </EventTrigger>
+    </Window.Triggers>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,7 +60,7 @@
         <!--Login-->
         <materialDesign:Card Margin="20" UniformCornerRadius="30" 
                              materialDesign:ElevationAssist.Elevation="Dp16" 
-                             Visibility="Visible" x:Name="cardLogin">
+                             Visibility="Collapsed" x:Name="cardLogin">
             <materialDesign:Card.Background>
                 <LinearGradientBrush StartPoint="0 0" EndPoint="0 1">
                     <GradientStop Offset="0.1" Color="SkyBlue"/>
@@ -50,12 +87,13 @@
                     <Label Content="Don't haveaccount yet?" Foreground="{StaticResource TextColor}" HorizontalAlignment="Left"/>
                     <Button x:Name="Btnsignin" Content="Signup" HorizontalAlignment="Right" Foreground="{StaticResource TextColorBlack}" Height="40" Width="80"
                     materialDesign:ButtonAssist.CornerRadius="4" BorderBrush="{StaticResource TextColorBlack}" BorderThickness="3" 
-                            PreviewMouseLeftButtonDown="Btnsignin_PreviewMouseLeftButtonDown"/>
+                           />
                 </StackPanel>
             </StackPanel>
         </materialDesign:Card>
         <!--Signup-->
-        <materialDesign:Card Grid.Row="0" Grid.Column="0" Margin="20" UniformCornerRadius="30" Visibility="Collapsed"
+        <materialDesign:Card Grid.Row="0" Grid.Column="0" Margin="20" UniformCornerRadius="30" 
+                             Visibility="Visible"
                              materialDesign:ElevationAssist.Elevation="Dp16"
                              x:Name="CardSignup">
             <materialDesign:Card.Background>
@@ -74,22 +112,30 @@
                    HorizontalAlignment="Center"
                    Foreground="{StaticResource TextColor}"/>
                 <TextBox materialDesign:HintAssist.Hint="Firstname" Margin="25,0" FontSize="14" Foreground="{StaticResource TextColor}" 
-                     materialDesign:HintAssist.IsFloating="True"/>
+                     materialDesign:HintAssist.IsFloating="True"
+                         x:Name="txtfname"/>
                 <TextBox materialDesign:HintAssist.Hint="Lastname" Margin="25,0" FontSize="14" Foreground="{StaticResource TextColor}" 
-                     materialDesign:HintAssist.IsFloating="True"/>
+                     materialDesign:HintAssist.IsFloating="True"
+                          x:Name="txtlname"/>
                 <TextBox materialDesign:HintAssist.Hint="Username" Margin="25,0" FontSize="14" Foreground="{StaticResource TextColor}" 
-                     materialDesign:HintAssist.IsFloating="True"/>
+                     materialDesign:HintAssist.IsFloating="True"
+                          x:Name="txtUname"/>
                 <PasswordBox materialDesign:HintAssist.Hint="Password" Margin="25,0" FontSize="14" Foreground="{StaticResource TextColor}" 
-                         materialDesign:HintAssist.IsFloating="True"/>
-                <Button x:Name="Btnsignup" Content="Signin" HorizontalAlignment="Right" 
+                         materialDesign:HintAssist.IsFloating="True"
+                              x:Name="txtPass"/>
+                <Button x:Name="Btnreg" Content="Sign UP" HorizontalAlignment="Center" 
                     Height="50" Width="150"
-                    materialDesign:ButtonAssist.CornerRadius="5" Margin="20"/>
+                        PreviewMouseLeftButtonDown="Btnreg_PreviewMouseLeftButtonDown"
+                        Background="{StaticResource ButtonColor}"
+                    materialDesign:ButtonAssist.CornerRadius="5" Margin="10"/>
                 <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Center"
                     Margin="10">
                     <Label Content="Don't haveaccount yet?" Foreground="{StaticResource TextColor}" HorizontalAlignment="Left"/>
-                    <Button x:Name="BtnSignup" Content="Signup" HorizontalAlignment="Right" Foreground="{StaticResource TextColorBlack}" Height="40" Width="80"
-                    materialDesign:ButtonAssist.CornerRadius="4" BorderBrush="{StaticResource TextColorBlack}" BorderThickness="3"
+                    <Button x:Name="BtnSignup"
+                            Content="Signup" HorizontalAlignment="Right" Foreground="{StaticResource TextColor}" Height="40" Width="80"
+                    materialDesign:ButtonAssist.CornerRadius="4" BorderBrush="{StaticResource TextColor}" BorderThickness="3"
+                          Background="Transparent"
                             PreviewMouseLeftButtonUp="BtnSignup_PreviewMouseLeftButtonUp"/>
                 </StackPanel>
             </StackPanel>

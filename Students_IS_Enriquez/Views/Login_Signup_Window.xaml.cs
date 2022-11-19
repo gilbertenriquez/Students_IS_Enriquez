@@ -22,6 +22,9 @@ namespace Students_IS_Enriquez.Views
     /// </summary>
     public partial class Login_Signup_Window : Window
     {
+
+        private SystemUsers system = new();
+        private SQLconfig SQLConfig = new();
         public Login_Signup_Window()
         {
             InitializeComponent();
@@ -52,6 +55,12 @@ namespace Students_IS_Enriquez.Views
                 MessageBox.Show("Connection Error");
             }
 
+        }
+
+
+        private async void Btnreg_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            await system.AddSystemUser(txtfname.Text, txtlname.Text, txtUname.Text, txtPass.Password);
         }
     }
 }
