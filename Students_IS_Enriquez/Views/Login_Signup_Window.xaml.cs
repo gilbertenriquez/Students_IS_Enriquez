@@ -60,8 +60,29 @@ namespace Students_IS_Enriquez.Views
 
         private async void Btnreg_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            await system.AddSystemUser(txtfname.Text, txtlname.Text, txtUname.Text, txtPass.Password);
+            var a = await system.AddSystemUser(txtfname.Text, txtlname.Text, txtUname.Text, txtPass.Password);
+            //var b = await system.Users(txtUname.Text);
+            //if (a==true && b==true)
+            //{
+            //    MessageBox.Show("okay");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("something wrong");
+            //}
+
+          /*  if (!b)
+            {
+                MessageBox.Show("Already Taken");
+            }
+            else
+            {
+                MessageBox.Show("code not right");
+            }*/
         }
+        
+
+        
     }
 }
 

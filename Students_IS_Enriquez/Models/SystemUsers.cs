@@ -17,8 +17,8 @@ namespace Students_IS_Enriquez.Models
 
         public async Task<bool> AddSystemUser(string fname, string lname, string username, string pass)
         {
-            //try
-            //{
+            try
+            {
                 Sqlcmd.Parameters.Clear();
                 await Conopen();
                 Strsql =
@@ -35,13 +35,36 @@ namespace Students_IS_Enriquez.Models
                 Strsql = "";
                 Cnn.Close();
                 return true;
-            //}
-            //catch
-            //{
-            //    return false;
-            //}
+            }
+            catch
+            {
+               return false;
+            }
 
         }
-    }
 
+
+
+        //public async Task<bool> Users(string UserName)
+        //{
+        //    try
+        //    {
+        //        await Conopen();
+        //        Strsql =
+        //            "SELECT  * Student_IS_db_Enriquez WHERE Uname =" + UserName;
+        //        Sqlcmd.Connection = Cnn;
+        //        Sqlcmd.CommandText = Strsql;
+        //        await Sqlcmd.ExecuteNonQueryAsync();
+        //        Strsql = "";
+        //        Cnn.Close();
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+
+        //}
+    }
+   
 }
