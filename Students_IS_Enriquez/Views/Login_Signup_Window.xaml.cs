@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Students_IS_Enriquez.Views;
 
 namespace Students_IS_Enriquez.Views
 {
@@ -80,9 +81,12 @@ namespace Students_IS_Enriquez.Views
                 MessageBox.Show("code not right");
             }*/
         }
-        
 
-        
+        private async void addstud_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var a = new StudentAdd();
+            a.ShowDialog();
+        }
     }
 }
 
