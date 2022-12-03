@@ -23,5 +23,18 @@ namespace Students_IS_Enriquez.Views
         {
             InitializeComponent();
         }
+
+        private void BTNclose_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            BTNclose.Visibility = Visibility.Collapsed;
+            BTNexpand.Visibility = Visibility.Visible;    
+
+        }
+
+        private void BTNexpand_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            BTNclose.Visibility = Visibility.Visible;
+            BTNexpand.Visibility = Visibility.Collapsed;
+        }
     }
 }

@@ -7,34 +7,55 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Window.Resources>
         <Storyboard x:Key="waaragud">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Width)">
                 <EasingDoubleKeyFrame KeyTime="00:00:02" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="balikoy">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
+
+    <Window.Triggers>
+            <EventTrigger RoutedEvent="UIElement.PreviewMouseLeftButtonDown" SourceName="BTNclose">
+                <BeginStoryboard Storyboard="{StaticResource waaragud}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="UIElement.PreviewMouseLeftButtonDown" SourceName="BTNexpand">
+                <BeginStoryboard Storyboard="{StaticResource balikoy}"/>
+            </EventTrigger>
+        </Window.Triggers>
+
     <Grid>
 
-       
+  
 
         <!--left panel-->
         <Grid x:Name="grid" Background="Black" Width="200" 
               HorizontalAlignment="Left">
             <StackPanel>
-                <Grid Height="150" VerticalAlignment="Top">
+                <Grid Height="150" VerticalAlignment="Top" >
+                    
                     <Button x:Name="BTNclose" Width="60" Height="60"
+
+                            PreviewMouseLeftButtonDown="BTNclose_PreviewMouseLeftButtonDown"
                         Background="{x:Null}" BorderBrush="{x:Null}"
                         VerticalAlignment="Top" HorizontalAlignment="Right"
-                        Visibility="Collapsed" Foreground="{StaticResource Highlighter}">
+                        Visibility="Visible" Foreground="{StaticResource Highlighter}">
                         <materialDesign:PackIcon Kind="ArrowLeft" Height ="25" Width="25"/>
                     </Button>
 
 
                     <Button x:Name="BTNexpand" Width="60" Height="60"
                         Background="{x:Null}" BorderBrush="{x:Null}"
+                            PreviewMouseLeftButtonDown="BTNexpand_PreviewMouseLeftButtonDown"
                         VerticalAlignment="Top" HorizontalAlignment="Right"
-                        Visibility="Visible" Foreground="{StaticResource Highlighter}">
+                        Visibility="Collapsed" Foreground="{StaticResource Highlighter}">
                         <materialDesign:PackIcon Kind="Menu" Height ="25" Width="25"/>
                     </Button>
                 </Grid>
