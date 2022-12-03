@@ -26,6 +26,7 @@ namespace Students_IS_Enriquez.Views
 
         private SystemUsers system = new();
         private SQLconfig SQLConfig = new();
+        private MainWindow main = new();
         public Login_Signup_Window()
         {
             InitializeComponent();
@@ -62,30 +63,27 @@ namespace Students_IS_Enriquez.Views
         private async void Btnreg_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var a = await system.AddSystemUser(txtfname.Text, txtlname.Text, txtUname.Text, txtPass.Password);
-            //var b = await system.Users(txtUname.Text);
-            //if (a==true && b==true)
-            //{
-            //    MessageBox.Show("okay");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("something wrong");
-            //}
-
-          /*  if (!b)
-            {
-                MessageBox.Show("Already Taken");
-            }
-            else
-            {
-                MessageBox.Show("code not right");
-            }*/
+          
         }
 
-        private async void addstud_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void addstud_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var a = new StudentAdd();
             a.ShowDialog();
+        }
+
+        private async void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+          var a =  await system.LoginUser(Usernametxt.Text, Passtxt.Password);
+            if (!a) return;           
+                Close();
+                main.ShowDialog(); 
+            
+        }
+
+        private void Usernametxt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

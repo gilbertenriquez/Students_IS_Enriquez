@@ -11,13 +11,13 @@
     <Window.Resources>
         <Storyboard x:Key="waaragud">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Width)">
-                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="balikoy">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Width)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="60"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="200"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
@@ -33,7 +33,169 @@
 
     <Grid>
 
-  
+        <Grid>
+            <Grid x:Name="panelstud" Visibility="Visible"  Height="Auto"
+                  Opacity="0.9"
+                  Background="{StaticResource Background}" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="200,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <materialDesign:Card VerticalAlignment="Top" Grid.Row="0"
+                                     HorizontalContentAlignment="Stretch"
+                                     materialDesign:ElevationAssist.Elevation="Dp12"
+                                     UniformCornerRadius="5"
+                                     Height="70" Background="{StaticResource ContentBackground}" Margin="10,30">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <Button Width="70" Height="50" 
+                                Margin="10,10,0,10"
+                                HorizontalAlignment="Left" Foreground="{StaticResource Highlighter}"
+                                x:Name="btnaddstudent"
+                                
+                                Background="{x:Null}" BorderThickness="0" ToolTip="Add">
+                            <materialDesign:PackIcon Kind="Plus" Margin="0" Height="30" Width="30"
+                                                     VerticalAlignment="Stretch" Foreground="{StaticResource Highlighter}"
+                                                     HorizontalAlignment="Stretch" RenderTransformOrigin="0.543,0.5"/>
+                        </Button>
+                        <Button Width="70" Height="50" Margin="10,10,0,10"
+                                HorizontalAlignment="Left" Foreground="{StaticResource Highlighter}"
+                                Background="{x:Null}" BorderThickness="0" ToolTip="Add" 
+                                >
+                            <materialDesign:PackIcon Kind="Edit"  Margin="0" Height="30" Width="30" Foreground="{StaticResource Highlighter}"
+                                                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RenderTransformOrigin="0.543,0.5"/>
+                        </Button>
+                        <Button Width="70" Height="50" Margin="10,10,0,10"
+                                HorizontalAlignment="Left" Foreground="{StaticResource Highlighter}"
+                                Background="{x:Null}" BorderThickness="0" ToolTip="Add" 
+                                x:Name="btnstudentprofile" >
+                            <materialDesign:PackIcon Kind="Person" Margin="0" Height="30" Width="30" Foreground="{StaticResource Highlighter}"
+                                                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RenderTransformOrigin="0.543,0.5"/>
+                        </Button>
+                        <Button Width="70" Height="50" Margin="10,10,0,10" IsEnabled="False"
+                                HorizontalAlignment="Left" Foreground="{StaticResource Highlighter}" x:Name="btndelete"
+                                Background="{x:Null}" BorderThickness="0" ToolTip="Delete" 
+                                >
+                            <materialDesign:PackIcon Kind="Delete"  Margin="0" Height="30" Width="30" Foreground="{StaticResource Highlighter}"
+                                                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RenderTransformOrigin="0.543,0.5"/>
+                        </Button>
+                        <Button Width="70" Height="50" Margin="10,10,0,10" x:Name="studrefresh"
+                                HorizontalAlignment="Left" Foreground="{StaticResource Highlighter}"
+                                
+                                Background="{x:Null}" BorderThickness="0" ToolTip="Refresh">
+                            <materialDesign:PackIcon Kind="Refresh" Margin="0" Height="30" Width="30" Foreground="{StaticResource Highlighter}"
+                                                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RenderTransformOrigin="0.543,0.5"/>
+                        </Button>
+                        <StackPanel Margin="0" VerticalAlignment="Center">
+                            <StackPanel Height="50" Margin="10" Width="2" Background="{StaticResource SeparatorColor}"/>
+                        </StackPanel>
+                        <TextBox materialDesign:HintAssist.Hint="Search..." Margin="15" Width="350" x:Name="txtsearchstudent"
+                                 materialDesign:HintAssist.HintOpacity="0.4" SelectionBrush="{StaticResource SeparatorColor}"
+                                 materialDesign:HintAssist.IsFloating="True"
+                                 
+                                 
+                                 Foreground="{StaticResource TextColor}" CaretBrush="{StaticResource SeparatorColor}" FontSize="15" FontWeight="Normal"/>
+                        <Button  Width="70" Height="50" x:Name="btnclosesearch"
+                                 BorderBrush="Transparent"
+                                  Background="Transparent">
+                            <materialDesign:PackIcon Kind="CloseCircle" Margin="0" Height="30" Width="30" Foreground="{StaticResource Highlighter}"
+                                                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RenderTransformOrigin="0.543,0.5"/>
+                        </Button>
+                        <!--material Search bar-->
+                        <StackPanel Margin="0" VerticalAlignment="Center">
+                            <StackPanel Height="50" Margin="10" Width="2" Background="{StaticResource SeparatorColor}"/>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                            <TextBlock Text="()" x:Name="txtstudentcount" VerticalAlignment="Center" Foreground="{StaticResource SubTextColor}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <Grid Height="Auto" Grid.Row="1" Margin="0 ,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ProgressBar Grid.Row="0" x:Name="studprogress" Visibility="Collapsed" IsIndeterminate="True" Foreground="{StaticResource ButtonColor}"/>
+                    <ListBox Grid.Row="1" x:Name="ListStudents" ItemsSource="{Binding Students}" Margin="20"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Single"
+                              >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:Card x:Name="studcard" Margin="0" Width="300" Height="150" UniformCornerRadius="10"
+                                                             Background="{x:Null}" BorderBrush="{x:Null}" Padding="0">
+                                    <Grid Margin="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="110"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Row="0"
+                                                Grid.Column="0" Background="{StaticResource Highlighter}" VerticalAlignment="Center"
+                                                Width="110" Height="110" HorizontalAlignment="Left"
+                                                CornerRadius="55">
+                                            <Border Width="105" Height="105" CornerRadius="55">
+                                                <Border.Background>
+                                                    <ImageBrush x:Name="studimage" ImageSource="{Binding img}"  Stretch="UniformToFill" />
+                                                </Border.Background>
+                                            </Border>
+                                        </Border>
+                                        <Grid Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LRN}" FontSize="12"
+                                                        Height="20" FontFamily="Tahoma" FontWeight="Bold"
+                                                        Foreground="{StaticResource Highlighter}" />
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding fullname}"
+                                                       FontSize="12"
+                                                       Height="20" FontFamily="Tahoma" FontWeight="Bold"
+                                                       Foreground="{StaticResource TextColor}" />
+                                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding gender}"
+                                                       FontSize="12"
+                                                       Height="20" FontFamily="Tahoma" FontWeight="Light"
+                                                       Foreground="{StaticResource TextColor}" />
+                                            <Separator Grid.Row="3" Grid.Column="0" Margin="0,5" Opacity="0.4" />
+                                            <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding guardian_name}"
+                                                       FontSize="12"
+                                                       Height="20" FontFamily="Tahoma" FontWeight="Light"
+                                                       Foreground="{StaticResource TextColor}" />
+                                            <TextBlock Grid.Row="5" Grid.Column="0" Text="{Binding guardian_mobile}"
+                                                       FontSize="12"
+                                                       Height="20" FontFamily="Tahoma" FontWeight="Light"
+                                                       Foreground="{StaticResource TextColor}" />
+                                            <TextBlock Grid.Row="6" Grid.Column="0" 
+                                                       FontSize="12"
+                                                       Height="20" FontFamily="Tahoma" FontWeight="Light"><Run Text="Last DA: " Foreground="{StaticResource SubTextColor}"/><Run Text=" "/><Run Text="{Binding last_date_attended}" Foreground="{StaticResource Highlighter}"/></TextBlock>
+                                        </Grid>
+                                    </Grid>
+                                </materialDesign:Card>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </Grid>
+            </Grid>
+        </Grid>
+
+
 
         <!--left panel-->
         <Grid x:Name="grid" Background="Black" Width="200" 
@@ -79,4 +241,5 @@
             </StackPanel>
         </Grid>
     </Grid>
+    
 </Window>

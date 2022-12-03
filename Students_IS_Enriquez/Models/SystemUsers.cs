@@ -27,7 +27,7 @@ namespace Students_IS_Enriquez.Models
                 Sqlcmd.Parameters.AddWithValue("@Fname", fname);
                 Sqlcmd.Parameters.AddWithValue("@Lname", lname);
                 Sqlcmd.Parameters.AddWithValue("@Uname", username);
-                Sqlcmd.Parameters.AddWithValue("@Password", pass);               
+                Sqlcmd.Parameters.AddWithValue("@Password", pass);
                 Sqlcmd.Connection = Cnn;
                 Sqlcmd.CommandText = Strsql;
                 await Sqlcmd.ExecuteNonQueryAsync();
@@ -38,33 +38,47 @@ namespace Students_IS_Enriquez.Models
             }
             catch
             {
-               return false;
+                return false;
             }
 
         }
 
 
+        public async Task<bool> LoginUser(string uname, string pass)
+        {
+            try
+            {
+                await Conopen();
+                Sqlcmd.Parameters.Clear();
+                Strsql = "Select * from TBL_SystemUsers where Uname ='" + uname + "' and Password ='" + pass + "'";
+                Sqlcmd.CommandText = Strsql;
+                Sqlcmd.Connection = Cnn;
+                Sqladapter.SelectCommand = Sqlcmd;
+                Sqlreader = await Sqlcmd.ExecuteReaderAsync();
 
-        //public async Task<bool> Users(string UserName)
-        //{
-        //    try
-        //    {
-        //        await Conopen();
-        //        Strsql =
-        //            "SELECT  * Student_IS_db_Enriquez WHERE Uname =" + UserName;
-        //        Sqlcmd.Connection = Cnn;
-        //        Sqlcmd.CommandText = Strsql;
-        //        await Sqlcmd.ExecuteNonQueryAsync();
-        //        Strsql = "";
-        //        Cnn.Close();
-        //        return true;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
+                if (Sqlreader.Read())
+                {
+                    Sqlcmd.Dispose();
+                    await Sqlreader.CloseAsync();
+                    Strsql = "";
+                    return true;
+                }
 
-        //}
+                Sqlcmd.Dispose();
+                await Sqlreader.CloseAsync();
+                Strsql = "";
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
     }
-   
 }
+
+
+    
+   
+

@@ -3,13 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Students_IS_Enriquez.Views"
-      
+        xmlns:local="clr-namespace:Students_IS_Enriquez.Views"     
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Loaded="Window_Loaded" 
         mc:Ignorable="d"
         Background="{StaticResource Background}"
         Title="Login_Signup_Window" Height="450" Width="800">
+    
+    
     <Window.Resources>
         <Storyboard x:Key="LoginBoard">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="cardLogin" Storyboard.TargetProperty="(FrameworkElement.Margin)">
@@ -60,11 +61,12 @@
         <!--Login-->
         <materialDesign:Card Margin="20" UniformCornerRadius="30" 
                              materialDesign:ElevationAssist.Elevation="Dp16" 
-                             Visibility="Collapsed" x:Name="cardLogin">
+                             Visibility="Visible" x:Name="cardLogin">
             <materialDesign:Card.Background>
                 <LinearGradientBrush StartPoint="0 0" EndPoint="0 1">
-                    <GradientStop Offset="0.1" Color="SkyBlue"/>
-                    <GradientStop Offset="1" Color="Pink"/>
+                    <GradientStop Offset="0.1" Color="Red"/>
+                    <GradientStop Offset="1" Color="DarkBlue"/>
+                    <GradientStop Color="#FFFB0001" Offset="0.356"/>
                 </LinearGradientBrush>
             </materialDesign:Card.Background>
             <StackPanel Orientation="Vertical"
@@ -76,24 +78,28 @@
                    HorizontalAlignment="Center"
                    Foreground="{StaticResource TextColor}"/>
                 <TextBox materialDesign:HintAssist.Hint="Username" Margin="25,0" FontSize="14" Foreground="{StaticResource TextColor}" 
-                     materialDesign:HintAssist.IsFloating="True"/>
+                     x:Name="Usernametxt"
+                         materialDesign:HintAssist.IsFloating="True" TextChanged="Usernametxt_TextChanged"/>
                 <PasswordBox materialDesign:HintAssist.Hint="Password" Margin="25,0" FontSize="14" Foreground="{StaticResource TextColor}" 
-                         materialDesign:HintAssist.IsFloating="True"/>
+                         x:Name="Passtxt" materialDesign:HintAssist.IsFloating="True"/>
+                
                 <Button Content="Signin" HorizontalAlignment="Right"  Height="50" Width="150" 
-                    materialDesign:ButtonAssist.CornerRadius="5" Margin="20"/>
+                        x:Name="BtnLogin" Click="BtnLogin_Click" 
+                    Foreground="{StaticResource TextColor}"  Background="{StaticResource ButtonColor}"
+                    materialDesign:ButtonAssist.CornerRadius="4" BorderBrush="{StaticResource ButtonColor}" BorderThickness="3" Margin="20"/>
                 <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Center"
                     Margin="10">
                     <Label Content="Don't haveaccount yet?" Foreground="{StaticResource TextColor}" HorizontalAlignment="Left"/>
-                    <Button x:Name="Btnsignin" Content="Signup" HorizontalAlignment="Right" Foreground="{StaticResource TextColorBlack}" Height="40" Width="80"
-                    materialDesign:ButtonAssist.CornerRadius="4" BorderBrush="{StaticResource TextColorBlack}" BorderThickness="3" 
+                    <Button x:Name="Btnsignin" Content="Signup" HorizontalAlignment="Right" Foreground="{StaticResource TextColor}" Height="40" Width="80"                    
+                           Background="Transparent" materialDesign:ButtonAssist.CornerRadius="4" BorderBrush="{StaticResource ButtonColor}" BorderThickness="3" 
                            />
                 </StackPanel>
             </StackPanel>
         </materialDesign:Card>
         <!--Signup-->
         <materialDesign:Card Grid.Row="0" Grid.Column="0" Margin="20" UniformCornerRadius="30" 
-                             Visibility="Visible"
+                             Visibility="Collapsed"
                              materialDesign:ElevationAssist.Elevation="Dp16"
                              x:Name="CardSignup">
             <materialDesign:Card.Background>
