@@ -34,7 +34,7 @@ namespace Students_IS_Enriquez.Models
                 Sqlcmd.Parameters.AddWithValue("@S_Lname", sLname);
                 Sqlcmd.Parameters.AddWithValue("@S_Address", sAdd);
                 Sqlcmd.Parameters.AddWithValue("@S_Mobile_Num", sMN);
-                Sqlcmd.Parameters.AddWithValue("@S_B_Date", BDate);
+                Sqlcmd.Parameters.AddWithValue("@S_B_Date", DateTime.Parse(BDate));
                 Sqlcmd.Connection = Cnn;
                 Sqlcmd.CommandText = Strsql;
                 await Sqlcmd.ExecuteNonQueryAsync();

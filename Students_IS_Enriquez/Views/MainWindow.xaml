@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Students_IS_Enriquez.Views"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
     
     <Window.Resources>
@@ -52,6 +53,7 @@
                                 Margin="10,10,0,10"
                                 HorizontalAlignment="Left" Foreground="{StaticResource Highlighter}"
                                 x:Name="btnaddstudent"
+                                PreviewMouseLeftButtonDown="btnaddstudent_PreviewMouseLeftButtonDown"   
                                 
                                 Background="{x:Null}" BorderThickness="0" ToolTip="Add">
                             <materialDesign:PackIcon Kind="Plus" Margin="0" Height="30" Width="30"
@@ -117,7 +119,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <ProgressBar Grid.Row="0" x:Name="studprogress" Visibility="Collapsed" IsIndeterminate="True" Foreground="{StaticResource ButtonColor}"/>
-                    <ListBox Grid.Row="1" x:Name="ListStudents" ItemsSource="{Binding Students}" Margin="20"
+                    <ListBox Grid.Row="1" x:Name="ListStudents"  Margin="20"
                               ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Single"
                               >
                         <ListBox.ItemTemplate>
@@ -157,29 +159,31 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LRN}" FontSize="12"
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding S_ID}" FontSize="12"
                                                         Height="20" FontFamily="Tahoma" FontWeight="Bold"
                                                         Foreground="{StaticResource Highlighter}" />
-                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding fullname}"
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding S_Fname}"
                                                        FontSize="12"
                                                        Height="20" FontFamily="Tahoma" FontWeight="Bold"
                                                        Foreground="{StaticResource TextColor}" />
-                                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding gender}"
+                                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding S_Lname}"
                                                        FontSize="12"
                                                        Height="20" FontFamily="Tahoma" FontWeight="Light"
                                                        Foreground="{StaticResource TextColor}" />
                                             <Separator Grid.Row="3" Grid.Column="0" Margin="0,5" Opacity="0.4" />
-                                            <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding guardian_name}"
+                                            <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding S_Address}"
                                                        FontSize="12"
                                                        Height="20" FontFamily="Tahoma" FontWeight="Light"
                                                        Foreground="{StaticResource TextColor}" />
-                                            <TextBlock Grid.Row="5" Grid.Column="0" Text="{Binding guardian_mobile}"
+                                            <TextBlock Grid.Row="5" Grid.Column="0" Text="{Binding S_Mobile_Num}"
                                                        FontSize="12"
                                                        Height="20" FontFamily="Tahoma" FontWeight="Light"
                                                        Foreground="{StaticResource TextColor}" />
                                             <TextBlock Grid.Row="6" Grid.Column="0" 
                                                        FontSize="12"
-                                                       Height="20" FontFamily="Tahoma" FontWeight="Light"><Run Text="Last DA: " Foreground="{StaticResource SubTextColor}"/><Run Text=" "/><Run Text="{Binding last_date_attended}" Foreground="{StaticResource Highlighter}"/></TextBlock>
+                                                       Height="20" FontFamily="Tahoma" FontWeight="Light">
+                                                <Run Text="Last DA: " Foreground="{StaticResource SubTextColor}"/><Run Text=" "/>
+                                                <Run Text="{Binding S_B_Date}" Foreground="{StaticResource Highlighter}"/></TextBlock>
                                         </Grid>
                                     </Grid>
                                 </materialDesign:Card>

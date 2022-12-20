@@ -30,6 +30,7 @@ namespace Students_IS_Enriquez.Views
         private async void Button_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             await addstudent.Addstudent(txtID.Text,txtfname.Text,txtlname.Text,txtAdd.Text,txtnumb.Text,txtdate.Text);
+           Close();
 
         }
     }

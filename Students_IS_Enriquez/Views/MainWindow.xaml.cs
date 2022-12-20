@@ -93,9 +93,17 @@ namespace Students_IS_Enriquez.Views
             BTNexpand.Visibility = Visibility.Collapsed;
         }
 
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            await FillStudents();
+        }
 
-
-
-
+        private async void btnaddstudent_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
+            var a = new StudentAdd();
+            a.ShowDialog();
+            await FillStudents();
+        }
     }
 }
