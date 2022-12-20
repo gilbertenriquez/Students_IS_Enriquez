@@ -95,6 +95,8 @@
                                  materialDesign:HintAssist.HintOpacity="0.4" SelectionBrush="{StaticResource SeparatorColor}"
                                  materialDesign:HintAssist.IsFloating="True"
                                  
+                                 TextChanged="txtsearchstudent_TextChanged"
+                                 
                                  
                                  Foreground="{StaticResource TextColor}" CaretBrush="{StaticResource SeparatorColor}" FontSize="15" FontWeight="Normal"/>
                         <Button  Width="70" Height="50" x:Name="btnclosesearch"

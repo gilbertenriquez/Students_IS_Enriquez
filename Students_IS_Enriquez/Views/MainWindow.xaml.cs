@@ -76,11 +76,62 @@ namespace Students_IS_Enriquez.Views
             {
                 studprogress.Visibility = Visibility.Collapsed;
             }
+
+        }
+        private async Task FindStudent(string query)
+        {
+            try
+            {
+                //txtsearchstudent.Text = "";
+                studprogress.Visibility = Visibility.Visible;
+                await Conopen();
+                studentsList.Clear();
+                Sqlcmd.Parameters.Clear();
+                ListStudents.ItemsSource = null;
+                Strsql = $"Select  * from TBLStudents where S_ID+S_Fname+S_Lname like '%" + query + "%' order by S_ID";
+                Sqlcmd.CommandText = Strsql;
+                Sqlcmd.Connection = Cnn;
+                Sqladapter.SelectCommand = Sqlcmd;
+                Sqlreader = await Sqlcmd.ExecuteReaderAsync();
+                while (Sqlreader.Read())
+                {
+                    //var dte = Sqlreader["last_date_attended"];
+                    //var startDateTime = DateTime.ParseExact((dte as string)!, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    //var a = startDateTime.Date.ToString("ddd, dd MMMM yyyy");
+                    studentsList.Add(new Students
+                    {
+                        S_ID = Sqlreader["S_ID"].ToString()!,
+                        S_Fname = Sqlreader["S_Fname"].ToString()!,
+                        S_Lname = Sqlreader["S_Lname"].ToString()!,
+                        S_Address = Sqlreader["S_Address"].ToString()!,
+                        S_Mobile_Num = Sqlreader["S_Mobile_Num"].ToString()!,
+                        S_B_Date = Sqlreader["S_B_Date"].ToString()!,
+
+                    });
+                }
+                Sqlcmd.Dispose();
+                await Sqlreader.CloseAsync();
+                Strsql = "";
+                ListStudents.ItemsSource = studentsList;
+                studprogress.Visibility = Visibility.Collapsed;
+                Sqlcmd.Dispose();
+                await Sqlreader.CloseAsync();
+                Cnn.Close();
+                //Count total
+                //await Tot_Count();
+
+            }
+            catch
+            {
+                studprogress.Visibility = Visibility.Collapsed;
+            }
+
         }
 
 
 
-        private void BTNclose_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+
+            private void BTNclose_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             BTNclose.Visibility = Visibility.Collapsed;
             BTNexpand.Visibility = Visibility.Visible;    
@@ -104,6 +155,12 @@ namespace Students_IS_Enriquez.Views
             var a = new StudentAdd();
             a.ShowDialog();
             await FillStudents();
+        }
+
+        private async void txtsearchstudent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchstudent.Text)) return;
+            await FindStudent(txtsearchstudent.Text);
         }
     }
 }
